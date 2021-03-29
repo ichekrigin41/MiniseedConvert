@@ -1,8 +1,9 @@
 from datetime import datetime,timedelta,date
 import os
 import wget
+import scrapy
 
-
+'''
 #today.strftime('%Y%m%d')
 today=datetime.now()
 
@@ -48,4 +49,20 @@ for i, val in enumerate(H1):
 print(y,m,d,H)
 print(file_URL)
 print(file_NAME)
+'''
+'''
+
+class BlogSpider(scrapy.Spider):
+    name='blogspider'
+     start_urls = ['http://seismic.p3volc.keenetic.pro/archive/2021/']
+
+    def __init__(self):
+        self.links[]
+
+    def parse(self, response):
+        self.links.append(response.url)
+        for href in response.css('a::attr(href)'):
+            yield response.follow(href, self.parse)
+    
+'''
 
