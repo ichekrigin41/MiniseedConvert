@@ -3,6 +3,18 @@ import os
 import wget
 import scrapy
 
+my_list=[]
+'''
+with open('/home/zoohan/Desktop/cnvrt/Links/all-01.html') as f:
+    for line in f:
+        listDir=line
+        print (line)
+        '''
+
+with open('/home/zoohan/Desktop/cnvrt/Links/all-01.html', 'r') as f:
+    my_list = [line.rstrip('\n') for line in f]
+
+
 '''
 #today.strftime('%Y%m%d')
 today=datetime.now()
@@ -50,19 +62,11 @@ print(y,m,d,H)
 print(file_URL)
 print(file_NAME)
 '''
+
+'''
+with open('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/all-01.html') as f:
+    lines = f.read().splitlines()
 '''
 
-class BlogSpider(scrapy.Spider):
-    name='blogspider'
-     start_urls = ['http://seismic.p3volc.keenetic.pro/archive/2021/']
 
-    def __init__(self):
-        self.links[]
-
-    def parse(self, response):
-        self.links.append(response.url)
-        for href in response.css('a::attr(href)'):
-            yield response.follow(href, self.parse)
-    
-'''
 

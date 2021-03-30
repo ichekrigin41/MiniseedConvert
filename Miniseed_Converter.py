@@ -61,11 +61,11 @@ def dataProcess(workingPath):
     DataConvert('CONVERTED_'+lines[24:38],ch_0,ch_1,ch_2,ch_3)
 
 
+
 p=''
 
 print("Type Working Dir")
 p=str(input())
-
 
 #p='/home/zoohan/Desktop/cnvrt/KRMSH20210328/'
 localdr=os.listdir(p)

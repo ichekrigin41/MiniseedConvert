@@ -12,10 +12,10 @@ BOT_NAME = 'getter_2'
 SPIDER_MODULES = ['getter_2.spiders']
 NEWSPIDER_MODULE = 'getter_2.spiders'
 
-
+ITEM_PIPELINES = {'scrapy.pipelines.files.FilesPipeline': 1}
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'getter_2 (+http://www.yourdomain.com)'
-
+FILES_STORE = r'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/getter_2/Downloaded'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
