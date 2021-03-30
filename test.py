@@ -7,7 +7,6 @@ import os
 
 localdr=os.listdir("21")
 
-
 def DataConvert(fileName,data,data2,data3,data4):
     fileOut=fileName
     fileOut=open(fileName,'w')
