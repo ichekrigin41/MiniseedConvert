@@ -50,9 +50,7 @@ def DataConvert(fileName,data,data2,data3,data4):
 
 
 def dataProcess(workingPath):
-    #for lines in localdr:
     print (lines)
-    #miniseedData=read("/home/zoohan/Desktop/cnvrt/21/"+lines)
     miniseedData=read(workingPath+'/'+lines)
     channels = miniseedData 
     ch_0=miniseedData[0].data
