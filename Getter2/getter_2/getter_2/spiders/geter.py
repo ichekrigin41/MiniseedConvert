@@ -132,7 +132,15 @@ class TopArtSpider(CrawlSpider):
 
 class BlogSpider(scrapy.Spider):
     name = 'test'
-    start_urls = ['http://seismic.p3volc.keenetic.pro/archive/2021/01/']
+    start_urls = [
+        'http://seismic.p3volc.keenetic.pro/archive/2021/01',
+        'http://seismic.p3volc.keenetic.pro/archive/2021/02',
+        'http://seismic.p3volc.keenetic.pro/archive/2021/03',
+        'http://seismic.p3volc.keenetic.pro/archive/2021/04',
+    
+    
+    
+    ]
 
     def __init__(self):
         self.links=[]
