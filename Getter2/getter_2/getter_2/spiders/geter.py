@@ -26,7 +26,5 @@ class BlogSpider(scrapy.Spider):
 
     def parse(self, response):
         self.links.append(response.url)
-        
         for href in response.css('a::attr(href)'):
-            
             yield { '' : href.get()}
