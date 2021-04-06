@@ -3,6 +3,7 @@ import re
 import string
 
 import wget
+import urllib.request
 
 
 marks=','
@@ -53,9 +54,15 @@ InputFile1=open(FixedURLs,'r')
 
 os.mkdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
 os.chdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
+'''
+for line in InputFile1:
+    try:
+        wget.download(line[:-1])
+    except: 
+        wget.download(line[:-1])
+'''
 
 for line in InputFile1:
-    wget.download(line[:-1])
-
+    urllib.request.urlretrieve(line[:-1])
 
 
