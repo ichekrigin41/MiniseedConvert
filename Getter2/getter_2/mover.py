@@ -1,71 +1,70 @@
 import os
 import shutil
 
+from pathlib import *
+
+listNames=["_202101","_202102","_202103","_202104","_202105","_202106",
+"_202107","_202108","_202109","_202110","_202111","_202112"]
 
 
-listNames=["_202101_","_202102_","_202103_","_202104_","_202105_","_202106_",
-"_202107_","_202108_","_202109_","_202110","_202111_","_202112_"]
 
-testName1="IV.KRMSH_20210116_070000.miniseed"
-testName2="IV.KRMSH_20210216_070000.miniseed"
-testName3="IV.KRMSH_20210816_070000.miniseed"
+#arr=os.listdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
 
-arr=os.listdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
+
 
 f=[f'{str(index):0>2.2}' for index in range(1,13)]
 
-#mover2(testName2,f)
+DownloadedDir=Path.cwd()
 
+FixedDownloadDir=str(DownloadedDir)+"/Getter2/getter_2/Downloaded/"
+FixedDownloadDir2=str(DownloadedDir)+"/Getter2/getter_2/Downloaded"
+
+
+
+arr=os.listdir(FixedDownloadDir2)
 
 
 def mover(fileName):
-    if "_202101" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_01')
+    if str(listNames[0]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_01")
         print(fileName)
-    if "_202102" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_02')
+    if str(listNames[1]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_02")
         print(fileName)
-    if "_202103" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_03')
+    if str(listNames[2]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_03")
         print(fileName)
-    if "_202104" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_04')
+    if str(listNames[3]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_04")
         print(fileName)
-    if "_202105" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_05')
+    if str(listNames[4]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_05")
         print(fileName)
-    if "_202106" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_06')
+    if str(listNames[5]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_06")
         print(fileName)
-    if "_202107" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_07')
+    if str(listNames[6]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_07")
         print(fileName)
-    if "_202108" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_08')
+    if str(listNames[7]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_08")
         print(fileName)
-    if "_202109" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_09')
+    if str(listNames[8]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_09")
         print(fileName)
-    if "_202110" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_10')
+    if str(listNames[9]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_10")
         print(fileName)
-    if "_202111" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_11')
+    if str(listNames[10]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_11")
         print(fileName)
-    if "_202112" in fileName:
-        shutil.move('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/'+fileName,'/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded/2021_12')
+    if str(listNames[11]) in fileName:
+        shutil.move(FixedDownloadDir+fileName,FixedDownloadDir+"/2021_12")
         print(fileName)
     else: return 0
-
 
 
 
 for line in arr:
     mover(line)
 
-
-#mover3(arr,listNames)
-'''
-for line in arr:
-    mover3(line,listNames)
-'''
