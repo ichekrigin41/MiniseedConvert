@@ -3,6 +3,9 @@ from numpy import savetxt
 import os
 from datetime import datetime
 import shutil
+from pathlib import *
+
+
 
 
 today=datetime.now()
@@ -11,22 +14,16 @@ if today.hour  <12:
 else:
     h="12"
 
+WorkDir=Path.cwd()
+
+os.mkdir(str(WorkDir)+"/Getter2/getter_2/Downloaded/"+"Converted_"+today.strftime('%Y%m%d')+h)
 
 
-#os.mkdir("/home/zoohan/Desktop/cnvrt/"+"Converted_"+today.strftime('%Y%m%d')+h)
-
-
-#print(type(CONVERTED_DIR))
-#os.chdir(os.mkdir("/home/zoohan/Desktop/cnvrt/"+"Converted_"+today.strftime('%Y%m%d')+h))
-#Convert .miniseed to txt format 
-
-#localdr=os.listdir("KRMSH20210328")
-
-#Converted_2021033100
 
 
 def DataConvert(fileName,data,data2,data3,data4):
-    os.chdir("/home/zoohan/Desktop/cnvrt/"+"Converted_"+today.strftime('%Y%m%d')+h)
+    os.chdir(str(WorkDir)+"/Getter2/getter_2/Downloaded/"+"Converted_"+today.strftime('%Y%m%d')+h)
+    #os.chdir(str(WorkDir)+"/Converted_"+today.strftime('%Y%m%d')+h)
     fileOut=fileName
     fileOut=open(fileName,'w')
     
@@ -52,7 +49,7 @@ def DataConvert(fileName,data,data2,data3,data4):
 
 def dataProcess(workingPath):
     print (lines)
-    miniseedData=read(workingPath+'/'+lines)
+    miniseedData=read(workingPath+lines)
     channels = miniseedData 
     ch_0=miniseedData[0].data
     ch_1=miniseedData[1].data
@@ -62,18 +59,16 @@ def dataProcess(workingPath):
 
 
 
-p=''
+
+
+
 
 print("Type Working Dir")
 p=str(input())
 
-#p='/home/zoohan/Desktop/cnvrt/KRMSH20210328/'
 localdr=os.listdir(p)
 
-#print("Type LOCAL_STORAGE")
-#localdr=str(input())
-#localdr=os.listdir(localdr)
-#os.mkdir(localdr+"Converted_"+today.strftime('%Y%m%d')+h)
+
 
 for lines in localdr:
     dataProcess(p)
