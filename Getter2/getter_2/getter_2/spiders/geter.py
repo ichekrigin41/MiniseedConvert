@@ -9,11 +9,13 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Request
 
 
+#scrapy crawl test -o test.csv
+
 
 
 
 class BlogSpider(scrapy.Spider):
-    name = 'test'
+    name = 'miniseedGetter'
     start_urls = [
         'http://seismic.p3volc.keenetic.pro/archive/2021/01',
         'http://seismic.p3volc.keenetic.pro/archive/2021/02',
@@ -28,3 +30,6 @@ class BlogSpider(scrapy.Spider):
         self.links.append(response.url)
         for href in response.css('a::attr(href)'):
             yield { '' : href.get()}
+
+
+#To RUN script Type: #scrapy crawl miniseedGetter -o scraped.csv (in CMD)

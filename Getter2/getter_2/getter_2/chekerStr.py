@@ -1,18 +1,21 @@
 import os
 import re
 import string
+from pathlib import *
 
 import wget
 import urllib.request
 
 
 marks=','
-    
-fileName='/home/zoohan/Desktop/cnvrt/Getter2/getter_2/test.csv'
-fileOut=open(fileName,'r')
 
-ConvertedToMiniseed='/home/zoohan/Desktop/cnvrt/Getter2/getter_2/miniseed_files.csv'
-fileOut_2=open(ConvertedToMiniseed,'w')
+ConstDir=Path.cwd()
+    
+fileName = str(ConstDir)+"/Getter2/getter_2/getter_2/scraped.csv"
+fileOut = open(fileName,'r')
+
+ConvertedToMiniseed = str(ConstDir)+'/Getter2/getter_2/miniseed_files.csv'
+fileOut_2 = open(ConvertedToMiniseed,'w')
 
 
 def miniseedCleaner(InputFile,OutFile):
@@ -41,19 +44,19 @@ def GetterWget(CleanedPath,WorkingDirr):
         print(URL_Const+line)
         wget.download(line)
 
-FixedURLs='/home/zoohan/Desktop/cnvrt/Getter2/getter_2/fixedURLs.csv'
+FixedURLs=str(ConstDir)+'/Getter2/getter_2/fixedURLs.csv'
 InputFile=open(FixedURLs,'w')
 
 fileOut_3=open(ConvertedToMiniseed,'r')
-WorkingDir='/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded'
+WorkingDir=str(ConstDir)+'/Getter2/getter_2/Downloaded'
 
 miniseedCleaner(fileOut,fileOut_2)
 Full_URL_Fixer(fileOut_3,InputFile)
 
 InputFile1=open(FixedURLs,'r')
 
-os.mkdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
-os.chdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
+#os.mkdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
+os.chdir(str(ConstDir)+'/Getter2/getter_2/Downloaded')
 '''
 for line in InputFile1:
     try:
@@ -61,8 +64,8 @@ for line in InputFile1:
     except: 
         wget.download(line[:-1])
 '''
-
+'''
 for line in InputFile1:
     urllib.request.urlretrieve(line[:-1])
-
+'''
 

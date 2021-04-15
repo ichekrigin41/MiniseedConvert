@@ -1,4 +1,0 @@
-seismic.p3volc.keenetic.pro/archive/2021/04/IV.KRMSH_centaur-6_7618_20210401_000000.miniseed
-seismic.p3volc.keenetic.pro/archive/2021/04/IV.KRMSH_centaur-6_7618_20210401_010000.miniseed
-seismic.p3volc.keenetic.pro/archive/2021/04/IV.KRMSH_centaur-6_7618_20210401_020000.miniseed
-seismic.p3volc.keenetic.pro/archive/2021/04/IV.KRMSH_centaur-6_7618_20210401_030000.miniseed
