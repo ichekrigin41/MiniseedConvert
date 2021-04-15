@@ -1,12 +1,14 @@
 import os
 import shutil
-
+import glob
 from pathlib import *
 
 listNames=["_202101","_202102","_202103","_202104","_202105","_202106",
 "_202107","_202108","_202109","_202110","_202111","_202112"]
 
 
+
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 #arr=os.listdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
 
@@ -22,6 +24,7 @@ FixedDownloadDir2=str(DownloadedDir)+"/Getter2/getter_2/Downloaded"
 
 
 arr=os.listdir(FixedDownloadDir2)
+
 
 
 def mover(fileName):
@@ -67,4 +70,5 @@ def mover(fileName):
 
 for line in arr:
     mover(line)
+
 
