@@ -1,8 +1,21 @@
 from datetime import datetime,timedelta,date
 import os
 import wget
+import scrapy
+
+my_list=[]
+'''
+with open('/home/zoohan/Desktop/cnvrt/Links/all-01.html') as f:
+    for line in f:
+        listDir=line
+        print (line)
+        '''
+
+with open('/home/zoohan/Desktop/cnvrt/Links/all-01.html', 'r') as f:
+    my_list = [line.rstrip('\n') for line in f]
 
 
+'''
 #today.strftime('%Y%m%d')
 today=datetime.now()
 
@@ -48,4 +61,12 @@ for i, val in enumerate(H1):
 print(y,m,d,H)
 print(file_URL)
 print(file_NAME)
+'''
+
+'''
+with open('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/all-01.html') as f:
+    lines = f.read().splitlines()
+'''
+
+
 
