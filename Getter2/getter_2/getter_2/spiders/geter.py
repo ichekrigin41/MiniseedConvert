@@ -1,7 +1,7 @@
 
 from urllib.parse import urlparse 
 import scrapy
-import wget
+#import wget
 
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
@@ -17,10 +17,9 @@ from scrapy.http import Request
 class BlogSpider(scrapy.Spider):
     name = 'miniseedGetter'
     start_urls = [
-        'http://seismic.p3volc.keenetic.pro/archive/2021/01',
-        'http://seismic.p3volc.keenetic.pro/archive/2021/02',
-        'http://seismic.p3volc.keenetic.pro/archive/2021/03',
+
         'http://seismic.p3volc.keenetic.pro/archive/2021/04',
+        'http://seismic.p3volc.keenetic.pro/archive/2021/05',
     ]
 
     def __init__(self):

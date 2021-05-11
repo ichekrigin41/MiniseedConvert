@@ -9,10 +9,10 @@ import urllib.request
 
 marks=','
 
-ConstDir=Path.cwd()
+ConstDir = Path.cwd()
     
 fileName = str(ConstDir)+"/Getter2/getter_2/getter_2/scraped.csv"
-fileOut = open(fileName,'r')
+fileOut = open(fileName ,'r')
 
 ConvertedToMiniseed = str(ConstDir)+'/Getter2/getter_2/miniseed_files.csv'
 fileOut_2 = open(ConvertedToMiniseed,'w')
@@ -25,8 +25,6 @@ def miniseedCleaner(InputFile,OutFile):
                 OutFile.write(line.replace(',',""))
 
 def Full_URL_Fixer(InputFile,OutFile):
-    
-
     URL_Const="http://seismic.p3volc.keenetic.pro"
     for line in InputFile:
         OutFile.write(URL_Const+line)
