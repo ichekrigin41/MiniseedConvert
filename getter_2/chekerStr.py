@@ -3,7 +3,7 @@ import re
 import string
 from pathlib import *
 
-import wget
+#import wget
 import urllib.request
 
 
@@ -13,13 +13,13 @@ ConstDir = Path.cwd()
 #str(ConstDir)+
 
 
-#fileName = str(ConstDir)+"/Getter2/getter_2/getter_2/scraped.csv"
-fileName = str(ConstDir)+"/scraped.csv"
+fileName = str(ConstDir)+"/getter_2/scraped.csv"
+#fileName = str(ConstDir)+"/scraped.csv"
 fileOut = open(fileName ,'r')
 
-#ConvertedToMiniseed = str(ConstDir)+'/Getter2/getter_2/miniseed_files.csv'
+ConvertedToMiniseed = str(ConstDir)+'/getter_2/miniseed_files.csv'
 
-ConvertedToMiniseed = str(ConstDir)+'/miniseed_files.csv'
+#ConvertedToMiniseed = str(ConstDir)+'/miniseed_files.csv'
 fileOut_2 = open(ConvertedToMiniseed,'w')
 
 
@@ -44,7 +44,7 @@ def remover(InputFile,OutFile):
 
 def GetterWget(CleanedPath,WorkingDirr):
     for line in CleanedPath:
-        print(URL_Const+line)
+        #print(URL_Const+line)
         wget.download(line)
 
 FixedURLs=str(ConstDir)+'/fixedURLs.csv'
@@ -59,16 +59,6 @@ Full_URL_Fixer(fileOut_3,InputFile)
 InputFile1=open(FixedURLs,'r')
 
 #os.mkdir('/home/zoohan/Desktop/cnvrt/Getter2/getter_2/Downloaded')
-os.chdir(str(ConstDir)+'/Downloaded')
-'''
-for line in InputFile1:
-    try:
-        wget.download(line[:-1])
-    except: 
-        wget.download(line[:-1])
-'''
-'''
-for line in InputFile1:
-    urllib.request.urlretrieve(line[:-1])
-'''
+os.chdir(str(ConstDir)+'/getter_2/Downloaded')
+
 

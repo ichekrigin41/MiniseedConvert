@@ -14,7 +14,6 @@ with open('/home/zoohan/Desktop/cnvrt/Links/all-01.html') as f:
 with open('/home/zoohan/Desktop/cnvrt/Links/all-01.html', 'r') as f:
     my_list = [line.rstrip('\n') for line in f]
 
-
 '''
 #today.strftime('%Y%m%d')
 today=datetime.now()

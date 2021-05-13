@@ -18,8 +18,8 @@ f=[f'{str(index):0>2.2}' for index in range(1,13)]
 
 DownloadedDir=Path.cwd()
 
-FixedDownloadDir=str(DownloadedDir)+"/Getter2/getter_2/Downloaded/"
-FixedDownloadDir2=str(DownloadedDir)+"/Getter2/getter_2/Downloaded"
+FixedDownloadDir=str(DownloadedDir)+"/getter_2/Downloaded/"
+FixedDownloadDir2=str(DownloadedDir)+"/getter_2/Downloaded"
 
 
 
