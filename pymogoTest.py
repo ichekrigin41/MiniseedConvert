@@ -3,13 +3,19 @@ from pymongo import MongoClient
 import datetime
 
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://127.0.0.1:27017/')
 
-db = client.Archive
+mydb = client["Archive"]
+year_2020 = mydb["2020"]
 
-test = db.__getitem__("2020")
+testDict = {"name":"Test1"}
 
-print(test)
+x = year_2020.insert_one(testDict)
+
+
+
+print(mydb.list_collection_names())
+print(x.inserted_id)
 
 '''
 post = {"author": "Mike",
