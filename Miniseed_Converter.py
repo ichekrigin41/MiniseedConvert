@@ -85,17 +85,16 @@ localdr=os.listdir(p)
 '''
 
 #TestWrite('CONVERTED_IV.KRMSH_centaur-6_7618_20210501_000000')
-p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/'
+p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/tst/'
 localdr = os.listdir(p)
 elems=[]
 Files = []
 
-fileExt = r"*.miniseed"
+for elems in localdr:
+    elems=p+elems
+    Files+= [elems]
 
-if str(Files) in fileExt:
-    for elems in localdr:
-        Files = read(p+elems)
-
+print(Files)
 #pathlib.Path().absolute()
 
 '''
@@ -110,27 +109,25 @@ for lines in localdr:
 
 #listDB=[test,test2]
 
-#utc = datetime.strptime('2011-01-21 02:37:21', '%Y-%m-%d %H:%M:%S')
-#insertion = DataDB.insert_one(post)
 
 def DB_INSERT(el):
-    n=0  
-    b=len(el.traces)
+    n=0
+    b=(read(el))
     print (b)
     
-    while n!=len(el.traces):
+    while n!=len(b.traces):
         post = {
-        "network":el[n].stats.network,
-        "station":el[n].stats.station,
-        "location":el[n].stats.location,
-        "channel":el[n].stats.channel,
-        "starttime":datetime.utcfromtimestamp(el[n].stats.starttime.timestamp),
-        "endtime":datetime.utcfromtimestamp(el[n].stats.endtime.timestamp),
-        "sampling_rate":el[n].stats.sampling_rate,
-        "delta":el[n].stats.delta,
-        "npts":el[n].stats.npts,
-        "calib":el[n].stats.calib,
-        "data":el[n].data.tolist(), 
+        "network":b[n].stats.network,
+        "station":b[n].stats.station,
+        "location":b[n].stats.location,
+        "channel":b[n].stats.channel,
+        "starttime":datetime.utcfromtimestamp(b[n].stats.starttime.timestamp),
+        "endtime":datetime.utcfromtimestamp(b[n].stats.endtime.timestamp),
+        "sampling_rate":b[n].stats.sampling_rate,
+        "delta":b[n].stats.delta,
+        "npts":b[n].stats.npts,
+        "calib":b[n].stats.calib,
+        "data":b[n].data.tolist(), 
         }
         insertion = DataDB.insert_one(post)
         n=n+1
@@ -147,5 +144,8 @@ print(listDB[0])'''
 #print(pp)
 
 
-for lines in Files:
-    DB_INSERT(Files)
+for e in Files:
+   # print(e.traces)
+    DB_INSERT(e)
+
+#print(Files)
