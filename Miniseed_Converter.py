@@ -95,20 +95,12 @@ for elems in localdr:
     Files+= [elems]
 
 print(Files)
-#pathlib.Path().absolute()
+
 
 '''
 for lines in localdr:
     dataProcessToDB(p)
    '''
-
-
-
-#test = read('/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/IV.KRMSH_centaur-6_7618_20210501_000000.miniseed')
-#test2 = read('/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/IV.KRMSH_centaur-6_7618_20210501_010000.miniseed')
-
-#listDB=[test,test2]
-
 
 def DB_INSERT(el):
     n=0
@@ -148,4 +140,4 @@ for e in Files:
    # print(e.traces)
     DB_INSERT(e)
 
-#print(Files)
+
