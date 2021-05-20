@@ -29,53 +29,6 @@ if not os.path.isdir(dir1):
     os.mkdir(dir1)
 
 
-def DataConvert(fileName, channels):
-    os.chdir(dir1)
-    fileOut=fileName
-    fileOut=open(fileName,'w')
-    
-    for channel in channels:
-        for line in channel.data:
-            fileOut.write(f'{str(line)}\n')
-        fileOut.write("END_CHANNEL\n")
-
-
-def dataProcess(workingPath):
-    print (lines)
-    miniseedData = read(workingPath + lines)
-    channels = miniseedData
-    DataConvert('CONVERTED_' + lines.replace('.miniseed', ''), miniseedData)
-
-
-def dataProcessToDB(workingPath):
-    print (lines)
-    miniseedData = read(workingPath + lines)
-    channels = miniseedData
-    DataConvertToDB('CONVERTED_' + lines.replace('.miniseed', ''), miniseedData)
-
-
-def DataConvertToDB(fileName, channels):
-    os.chdir(dir1)
-    fileOut=fileName
-    fileOut=open(fileName,'w')
-    
-    for channel in channels:
-        for line in channel.data:
-            x = year_2021.insert_one(f'{str(line)}\n')
-            #fileOut.write(f'{str(line)}\n')
-       # fileOut.write("END_CHANNEL\n")
-
-def TestWrite(fileName):
-    os.chdir(dir1)
-    tempFile = fileName
-    tempFile = open(fileName,"r")
-    data=[]
-    for line in tempFile:
-        x = DataDB.insert_one(f'{str(line)}\n')
-
-
-
-
 '''
 #Ввод директории ОТКУДА конвертить
 print("Type Working Dir")
@@ -84,7 +37,6 @@ p=str(input())
 localdr=os.listdir(p)
 '''
 
-#TestWrite('CONVERTED_IV.KRMSH_centaur-6_7618_20210501_000000')
 p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/tst/'
 localdr = os.listdir(p)
 elems=[]
@@ -97,10 +49,7 @@ for elems in localdr:
 print(Files)
 
 
-'''
-for lines in localdr:
-    dataProcessToDB(p)
-   '''
+
 
 def DB_INSERT(el):
     n=0
@@ -137,7 +86,6 @@ print(listDB[0])'''
 
 
 for e in Files:
-   # print(e.traces)
     DB_INSERT(e)
 
 

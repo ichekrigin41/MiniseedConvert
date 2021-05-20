@@ -84,7 +84,6 @@ p=str(input())
 localdr=os.listdir(p)
 '''
 
-#TestWrite('CONVERTED_IV.KRMSH_centaur-6_7618_20210501_000000')
 p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/'
 localdr = os.listdir(p)
 elems=[]
@@ -105,13 +104,7 @@ for lines in localdr:
 
 
 
-#test = read('/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/IV.KRMSH_centaur-6_7618_20210501_000000.miniseed')
-#test2 = read('/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/IV.KRMSH_centaur-6_7618_20210501_010000.miniseed')
 
-#listDB=[test,test2]
-
-#utc = datetime.strptime('2011-01-21 02:37:21', '%Y-%m-%d %H:%M:%S')
-#insertion = DataDB.insert_one(post)
 
 def DB_INSERT(el):
     n=0  
