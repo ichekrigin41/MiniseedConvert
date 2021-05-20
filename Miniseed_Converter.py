@@ -29,15 +29,16 @@ if not os.path.isdir(dir1):
     os.mkdir(dir1)
 
 
-'''
+
+#p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/tst/'
+
 #Ввод директории ОТКУДА конвертить
-print("Type Working Dir")
+print("Ввод директории ОТКУДА вести запись в БД")
 p=str(input())
 
-localdr=os.listdir(p)
-'''
 
-p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/tst/'
+
+
 localdr = os.listdir(p)
 elems=[]
 Files = []
@@ -73,16 +74,6 @@ def DB_INSERT(el):
         insertion = DataDB.insert_one(post)
         n=n+1
 
-'''
-for e in listDB:
-    #print (e.traces)
-    DB_INSERT(e)
-    '''
-'''fileExt = r"*.miniseed"
-pp=list(pathlib.Path(p).glob(fileExt))
-listDB=[pp]
-print(listDB[0])'''
-#print(pp)
 
 
 for e in Files:
