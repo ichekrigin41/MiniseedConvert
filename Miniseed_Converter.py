@@ -10,12 +10,41 @@ from pathlib import *
 import pymongo
 from pymongo import MongoClient
 import pathlib
+from sshtunnel import SSHTunnelForwarder
+import pprint
 
+MONGO_HOST = "192.168.1.34"
+MONGO_DB = "Archive"
+MONGO_USER = "ubersoft"
+MONGO_PASS = "1"
+
+server = SSHTunnelForwarder(
+    MONGO_HOST,
+    ssh_username=MONGO_USER,
+    ssh_password=MONGO_PASS,
+    remote_bind_address=('127.0.0.1', 27017)
+)
+
+server.start()
+
+client = pymongo.MongoClient('127.0.0.1', server.local_bind_port) # server.local_bind_port is assigned local port
+db = client[MONGO_DB]
+DataDB = db["Data"]
+AddedFilesDB=db["AddedFiles"]
+pprint.pprint(db.collection_names())
+
+
+'''
 client = MongoClient('mongodb://127.0.0.1:27017/')
 mydb = client["Archive"]
 DataDB = mydb["Data"]
+'''
 
-print(mydb.list_collection_names())
+
+
+
+
+print(db.list_collection_names())
 
 today=datetime.now()
 if today.hour  <12:
@@ -74,9 +103,18 @@ def DB_INSERT(el):
         insertion = DataDB.insert_one(post)
         n=n+1
 
+def AddedFiles(FileName):
+    post2 ={
+        "file_name":FileName,
+        "add_time":today
+    }
+    insertion = AddedFilesDB.insert_one(post2)
 
 
 for e in Files:
     DB_INSERT(e)
+    AddedFiles(e)
+
+server.stop()
 
 
