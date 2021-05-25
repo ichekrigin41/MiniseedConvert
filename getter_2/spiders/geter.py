@@ -18,8 +18,18 @@ class BlogSpider(scrapy.Spider):
     name = 'miniseedGetter'
     start_urls = [
 
+        #'http://seismic.p3volc.keenetic.pro/archive/2021/01',
+        #'http://seismic.p3volc.keenetic.pro/archive/2021/02',
+        #'http://seismic.p3volc.keenetic.pro/archive/2021/03',
         'http://seismic.p3volc.keenetic.pro/archive/2021/04',
-        'http://seismic.p3volc.keenetic.pro/archive/2021/05',
+        #'http://seismic.p3volc.keenetic.pro/archive/2021/05',
+        
+
+        
+        #'http://seismic.p3volc.keenetic.pro/archive/2020/12',
+        
+        
+        
     ]
 
     def __init__(self):
