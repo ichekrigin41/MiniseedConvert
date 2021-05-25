@@ -85,6 +85,8 @@ def DB_INSERT(el):
     print(b)
 
     while n != len(b.traces):
+        lenb = len(b)
+
         post = {
             "network": b[n].stats.network,
             "station": b[n].stats.station,
@@ -99,96 +101,32 @@ def DB_INSERT(el):
             "data": b[n].data.tolist(),
             "file_name": el
         }
+
+        AddedPost ={
+            "file_name": el,
+            "add_time": today,
+            "channel_1": b[n].stats.channel,
+            "channel_2": b[lenb-2].stats.channel,
+            "channel_3": b[lenb-3].stats.channel,
+            "channel_4": b[lenb-4].stats.channel,
+            "channel_5": b[lenb-5].stats.channel,
+            "channel_6": b[lenb-6].stats.channel,
+
+        }
         
         DataDB.insert_one(post)
         n = n+1
+
+    AddedFilesDB.insert_one(AddedPost)        
         
 
 
-def AddedFiles(FileName):
-    post2 = {
-        "file_name": FileName,
-        "add_time": today
-    }
-    AddedFilesDB.insert_one(post2)
-
-
-def DatabaseChecker(datas):
-    for datas in Files:
-        DB_INSERT(datas)
-        AddedFiles(datas)
-
-
-    # print(list(F))
-n = 0
-
-
-'''
-for e in Files:
-    #AdFiles = AddedFilesDB.find_one({"file_name"},{e})
-    #FileNameInDB = DataDB.find_one({"file_name"},{e})
-
-    #AdFiles = AddedFilesDB.find_one({"file_name":e})
-    #FileNameInDB = DataDB.find_one({"file_name":e})
-
-    AdFiles = AddedFilesDB.find({},{"_id":0,"file_name":1})
-
-
-    #FileNameInDB = DataDB.find_one({"file_name":e})
-
-
-    print(AdFiles)
-    #print(FileNameInDB)
-   # print(FileNameInDB)
-   # DB_INSERT(e)
-   # AddedFiles(e)
-  '''
-'''
-for e in AddedFilesDB.find({}, {"_id": 0, "file_name": 1}):
-    #DatabaseChecker(e)
-    
-    print(type(e))
-    res = str(e)
-    lenres = len(res)
-    convertedstring = (res[13:lenres-1])
-    XX = re.sub("'", "", convertedstring)
-    XX2 = re.sub("^\s+|\s+$", "", XX, flags=re.UNICODE)
-    for e1 in DataDB.find({}, {"_id": 0, "file_name": 1}):
-        res2 = str(e1)
-        print(res2)
-
-        lenres2 = len(res2)
-        convertedstring2 = (res2[13:lenres2-1])
-        XXX = re.sub("'", "", convertedstring2)
-        XX3 = re.sub("^\s+|\s+$", "", XXX, flags=re.UNICODE)
-
-        if XX2 == XX3:
-                print("Equal")
-                #break
-        elif XX2 != XX3:
-                print("NOT Equals")
-                #print(str(datas))
-                print(XX2)
-                print(XX3)
-                #DatabaseChecker(e)
-
-        # e+=1
-'''
 
 for e in Files:
-   # AA=DataDB.find({"/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/tst/IV.KRMSH_centaur-6_7618_20210401_210000.miniseed":{"$exists":True}})
-    #AA=list(AddedFilesDB.find({"$and":[ {e:{"$exists": True}}, {e:{"$ne": "1"}}]}))
-    AA=AddedFilesDB.find()[20:25]
-    BB=DataDB.find({"$and":[ {e:{"$exists": True}}, {e:{"$ne": ""}}]})
-    print(e)
-#collection.find({"cwc":{"$exists":True}})
-    for doc in AddedFilesDB.find(({e:{"$exists":True}})):
-        print(doc)
-            
     
-    #print("False")
-    
-    DB_INSERT(e)
-    AddedFiles(e)
-  
+    if AddedFilesDB.find_one({"file_name":e}):
+        print (e +"_Already in Database!")
+    else: DB_INSERT(e)
+
+
 server.stop()
