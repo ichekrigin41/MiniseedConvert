@@ -1,4 +1,5 @@
 from posix import listdir
+from typing import Type
 from weakref import ProxyTypes
 from obspy import read
 from numpy import savetxt
@@ -61,7 +62,7 @@ if not os.path.isdir(dir1):
     os.mkdir(dir1)
 
 
-p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/tst/'
+p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/'
 
 # Ввод директории ОТКУДА конвертить
 print("Ввод директории ОТКУДА вести запись в БД")
@@ -80,53 +81,60 @@ print(Files)
 
 
 def DB_INSERT(el):
-    n = 0
-    b = (read(el))
-    print(b)
+   
+    try:
+       
+        n = 0
+        b = (read(el))
+ 
+        while n != len(b.traces):
+            lenb = len(b)
 
-    while n != len(b.traces):
-        lenb = len(b)
+            post = {
+                "network": b[n].stats.network,
+                "station": b[n].stats.station,
+                "location": b[n].stats.location,
+                "channel": b[n].stats.channel,
+                "starttime": datetime.utcfromtimestamp(b[n].stats.starttime.timestamp),
+                "endtime": datetime.utcfromtimestamp(b[n].stats.endtime.timestamp),
+                "sampling_rate": b[n].stats.sampling_rate,
+                "delta": b[n].stats.delta,
+                "npts": b[n].stats.npts,
+                "calib": b[n].stats.calib,
+                "data": b[n].data.tolist(),
+                "file_name": el
+            }
 
-        post = {
-            "network": b[n].stats.network,
-            "station": b[n].stats.station,
-            "location": b[n].stats.location,
-            "channel": b[n].stats.channel,
-            "starttime": datetime.utcfromtimestamp(b[n].stats.starttime.timestamp),
-            "endtime": datetime.utcfromtimestamp(b[n].stats.endtime.timestamp),
-            "sampling_rate": b[n].stats.sampling_rate,
-            "delta": b[n].stats.delta,
-            "npts": b[n].stats.npts,
-            "calib": b[n].stats.calib,
-            "data": b[n].data.tolist(),
-            "file_name": el
-        }
+            AddedPost ={
+                "file_name": el,
+                "add_time": today,
+                "channel_1": b[n].stats.channel,
+                "channel_2": b[lenb-2].stats.channel,
+                "channel_3": b[lenb-3].stats.channel,
+                "channel_4": b[lenb-4].stats.channel,
+                "channel_5": b[lenb-5].stats.channel,
+                "channel_6": b[lenb-6].stats.channel,
 
-        AddedPost ={
-            "file_name": el,
-            "add_time": today,
-            "channel_1": b[n].stats.channel,
-            "channel_2": b[lenb-2].stats.channel,
-            "channel_3": b[lenb-3].stats.channel,
-            "channel_4": b[lenb-4].stats.channel,
-            "channel_5": b[lenb-5].stats.channel,
-            "channel_6": b[lenb-6].stats.channel,
+            }
+            
+            DataDB.insert_one(post)
+            n = n+1
+          
 
-        }
-        
-        DataDB.insert_one(post)
-        n = n+1
-
-    AddedFilesDB.insert_one(AddedPost)        
+        AddedFilesDB.insert_one(AddedPost)
+    except TypeError:
+        print("TypeError")        
         
 
 
 
 for e in Files:
-    
     if AddedFilesDB.find_one({"file_name":e}):
         print (e +"_Already in Database!")
-    else: DB_INSERT(e)
+    else: 
+        
+        DB_INSERT(e)
+        print("Loading_",e)
 
 
 server.stop()
