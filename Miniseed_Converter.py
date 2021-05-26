@@ -56,14 +56,15 @@ if today.hour < 12:
 else:
     h = "12"
 
-WorkDir = Path.cwd()
-dir1 = f"{str(WorkDir)}/getter_2/Downloaded/Converted_{today.strftime('%Y%m%d')}{h}"
+
+#WorkDir = Path.cwd()
+'''
+dir1 = f"{str(WorkDir)}/Downloaded/Converted_{today.strftime('%Y%m%d')}{h}"
 if not os.path.isdir(dir1):
     os.mkdir(dir1)
+'''
 
-
-p = '/home/zoohan/Рабочий стол/convert_mongo/MiniseedConvert/Downloaded/'
-
+p = '/home/zoohan/Рабочий стол/MiniseedConvert/Downloaded/'
 # Ввод директории ОТКУДА конвертить
 print("Ввод директории ОТКУДА вести запись в БД")
 # p=str(input())
@@ -81,16 +82,19 @@ print(Files)
 
 
 def DB_INSERT(el):
-   
+
     try:
-       
+
         n = 0
         b = (read(el))
- 
+        elBasename = el
+
         while n != len(b.traces):
             lenb = len(b)
 
             post = {
+                "path_to_file": el,
+                "file_name": os.path.basename(elBasename),
                 "network": b[n].stats.network,
                 "station": b[n].stats.station,
                 "location": b[n].stats.location,
@@ -101,40 +105,34 @@ def DB_INSERT(el):
                 "delta": b[n].stats.delta,
                 "npts": b[n].stats.npts,
                 "calib": b[n].stats.calib,
-                "data": b[n].data.tolist(),
-                "file_name": el
-            }
-
-            AddedPost ={
-                "file_name": el,
-                "add_time": today,
-                "channel_1": b[n].stats.channel,
-                "channel_2": b[lenb-2].stats.channel,
-                "channel_3": b[lenb-3].stats.channel,
-                "channel_4": b[lenb-4].stats.channel,
-                "channel_5": b[lenb-5].stats.channel,
-                "channel_6": b[lenb-6].stats.channel,
+                "data": b[n].data.tolist()
 
             }
-            
+
             DataDB.insert_one(post)
             n = n+1
-          
 
-        AddedFilesDB.insert_one(AddedPost)
     except TypeError:
-        print("TypeError")        
-        
+        print("TypeError")
 
+
+def AddedFiles(element):
+
+    AddedPost = {
+        "file_name": os.path.basename(element),
+        "add_time": today,
+    }
+    return AddedFilesDB.insert_one(AddedPost)
 
 
 for e in Files:
-    if AddedFilesDB.find_one({"file_name":e}):
-        print (e +"_Already in Database!")
-    else: 
-        
+    if AddedFilesDB.find_one({"file_name": os.path.basename(e)}):
+        print(os.path.basename(e) + "_Already in Database!")
+    else:
+
         DB_INSERT(e)
-        print("Loading_",e)
+        AddedFiles(e)
+        print("Loading------------->", os.path.basename(e))
 
 
 server.stop()
