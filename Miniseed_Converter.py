@@ -129,7 +129,6 @@ for e in Files:
     if AddedFilesDB.find_one({"file_name": os.path.basename(e)}):
         print(os.path.basename(e) + "_Already in Database!")
     else:
-
         DB_INSERT(e)
         AddedFiles(e)
         print("Loading------------->", os.path.basename(e))
